@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrimonio Francesco - Elegance Design Sonoro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; line-height: 1.6; color: #333; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        .hero { 
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 58, 58, 0.7) 0%, rgba(74, 124, 124, 0.7) 100%);
+            z-index: 2;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .hero h1 { 
+            font-size: 4rem; 
+            margin-bottom: 20px; 
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.5);
+        }
+        
+        .hero p { 
+            font-size: 1.5rem; 
+            opacity: 0.95;
+            letter-spacing: 0.5px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+        }
+        
+        .section { 
+            background: white; 
+            padding: 40px; 
+            margin-bottom: 40px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 { 
+            color: #1A3A3A; 
+            font-size: 2rem; 
+            margin-bottom: 20px;
+        }
+        
+        .section h3 { 
+            color: #5FA99B;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        
+        .section p { 
+            color: #666; 
+            font-size: 1.05rem; 
+            margin-bottom: 15px;
+        }
+        
+        .video-box {
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 450px;
+            margin: 30px auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            aspect-ratio: 9 / 16;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+        }
+        
+        .video-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+        }
+        
+        .video-box video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .video-label {
+            background: linear-gradient(to top, rgba(26, 58, 58, 0.95), transparent);
+            color: white;
+            padding: 20px 15px 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            line-height: 1.4;
+            width: 100%;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+            align-items: center;
+        }
+        
+        .price-box {
+            background: linear-gradient(135deg, #5FA99B 0%, #1A3A3A 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .price-box .label { font-size: 0.9rem; opacity: 0.9; }
+        .price-box .amount { font-size: 2.5rem; font-weight: 900; margin: 10px 0; }
+        
+        .grid-2 ul { list-style: none; margin: 20px 0; }
+        .grid-2 ul li { padding: 8px 0 8px 25px; position: relative; color: #555; }
+        .grid-2 ul li:before { content: "✓"; position: absolute; left: 0; color: #5FA99B; font-weight: 700; }
+        
+        .button {
+            display: inline-block;
+            background: #5FA99B;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .button:hover {
+            background: #1A3A3A;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .hero { height: 70vh; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .section h2 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO -->
+    <div class="hero">
+        <video autoplay muted loop playsinline>
+            <source src="camemi_video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>Matrimonio Francesco</h1>
+            <p>Elegance Design Sonoro - Castello Camemi</p>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <!-- VIDEO 1: STAFF TRAILER -->
+        <div class="section">
+            <div class="grid-2">
+                <div>
+                    <div class="video-box">
+                        <video id="video1" muted preload="auto" playsinline>
+                            <source src="TRAILER_ELEGANCE_2024 VERTICALE.mp4" type="video/mp4">
+                            Browser non supporta video HTML5
+                        </video>
+                        <div class="video-label">Staff Elegance • 20+ anni • 500+ matrimoni</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Eleganza Musicale Pura</h3>
+                    <h2>Elegance Design Sonoro</h2>
+                    <p>Scopri il team di musicisti professionisti che trasformeranno il tuo matrimonio in un'esperienza sonora indimenticabile.</p>
+                    <p><strong>20+ anni di esperienza</strong> • <strong>500+ matrimoni personalizzati</strong></p>
+                    <p>Qualità che parla per sé. Semplicità, eleganza e sobrietà al servizio della tua giornata speciale.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIDEO 2: TRIO JAZZ -->
+        <div class="section">
+            <div class="grid-2">
+                <div>
+                    <h3>Eleganza Musicale Pura</h3>
+                    <h2>Trio Jazz Blue Notes</h2>
+                    <p><strong>20+ anni di esperienza</strong> • <strong>500+ matrimoni personalizzati</strong></p>
+                    <p>Sax, voce e chitarra creano un'atmosfera sofisticata e professionale. Repertorio completamente riarrangiato in chiave moderna: Sting, Coldplay, Ludovico Einaudi.</p>
+                    <p>Perfetto per aperitivo, cocktail e cena. Musica che crea atmosfera senza invadere lo spazio.</p>
+                    
+                    <div class="price-box">
+                        <div class="label">Investimento Trio Jazz</div>
+                        <div class="amount">€3.500</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="video-box">
+                        <video id="video2" muted preload="auto" playsinline>
+                            <source src="voce_sax_chitarra.mp4" type="video/mp4">
+                            Browser non supporta video HTML5
+                        </video>
+                        <div class="video-label">Trio Jazz Blue Notes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIDEO 3: QUARTETTO D'ARCHI -->
+        <div class="section">
+            <div class="grid-2">
+                <div>
+                    <div class="video-box">
+                        <video id="video3" muted preload="auto" playsinline>
+                            <source src="violino.mp4" type="video/mp4">
+                            Browser non supporta video HTML5
+                        </video>
+                        <div class="video-label">Quartetto d'Archi Aurora</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Il Tocco di Classe Moderno</h3>
+                    <h2>Quartetto d'Archi Aurora</h2>
+                    <p><strong>Aggiungete il violino moderno</strong> al Trio Jazz per un effetto straordinario.</p>
+                    <p>Il violino integrato con Sax, Voce e Chitarra crea un'eleganza senza affettazione. Non è violino "da chiesa" - è violino come strumento di Jazz moderno.</p>
+                    
+                    <ul>
+                        <li>Violino + Sax = blend elegante</li>
+                        <li>Repertorio 100% moderno riarrangiato</li>
+                        <li>Perfetto per ricevimento e aperitivo</li>
+                        <li>Niente cliché "da chiesa"</li>
+                    </ul>
+                    
+                    <div class="price-box">
+                        <div class="label">Aggiunta Violino Moderno</div>
+                        <div class="amount">+€500</div>
+                        <div style="margin-top: 10px;">Totale con violino: <strong>€4.000</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- CTA -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #1A3A3A 0%, #4A7C7C 100%); color: white;">
+            <h2 style="color: white; margin-bottom: 20px;">Confermo Questa Proposta</h2>
+            <p style="color: #e0e0e0; margin-bottom: 20px;">Pronto a trasformare il tuo matrimonio in un'esperienza sonora indimenticabile?</p>
+            <button class="button" onclick="alert('✓ Perfetto! Ti contatteremo per fissare la videochiamata di venerdì 10 luglio ore 19:00.')">Sì, Confermo!</button>
+        </div>
+
+    </div>
+
+    <script>
+        // DEBUG & AUTOPLAY
+        console.log('✅ Presentazione Francesco caricata');
+        
+        const videoData = [
+            { id: 'video1', name: 'TRAILER_ELEGANCE_2024_VERTICALE.mp4' },
+            { id: 'video2', name: 'voce_sax_chitarra.mp4' },
+            { id: 'video3', name: 'violino.mp4' }
+        ];
+        
+        videoData.forEach((v, idx) => {
+            const video = document.getElementById(v.id);
+            if (!video) {
+                console.error(`❌ Video ${idx+1} element NOT found:`, v.id);
+                return;
+            }
+            
+            console.log(`✅ Video ${idx+1} element found:`, v.id);
+            
+            video.addEventListener('loadedmetadata', () => {
+                console.log(`✅ Video ${idx+1} - Metadata loaded (${video.videoWidth}x${video.videoHeight})`);
+            });
+            
+            video.addEventListener('canplay', () => {
+                console.log(`✅ Video ${idx+1} - Ready to play`);
+            });
+            
+            video.addEventListener('error', (e) => {
+                console.error(`❌ Video ${idx+1} - Error:`, e, 'File:', v.name);
+            });
+            
+            video.addEventListener('play', () => {
+                console.log(`▶️  Video ${idx+1} - Playing`);
+            });
+        });
+        
+        // MOUSEENTER/MOUSELEAVE - VIDEO PLAY + AUDIO ON HOVER
+        console.log('🎥 Initializing video hover system...');
+        
+        document.querySelectorAll('.video-box').forEach((box, idx) => {
+            const video = box.querySelector('video');
+            
+            if (!video) {
+                console.error(`❌ Video ${idx+1} element not found`);
+                return;
+            }
+            
+            console.log(`✅ Video ${idx+1} - Element found, ready for hover`);
+            
+            // MOUSEENTER - Video parte + Audio ON
+            box.addEventListener('mouseenter', function(e) {
+                console.log(`👆 Video ${idx+1} - MOUSE ENTERED (hover detected)`);
+                
+                try {
+                    // Assicurati che il video è caricato
+                    if (video.readyState < 2) {
+                        console.warn(`⏳ Video ${idx+1} - Still loading, waiting...`);
+                        video.load(); // Forza il caricamento
+                    }
+                    
+                    // Se il video è in pausa, fallo partire
+                    if (video.paused) {
+                        // Unmuta PRIMA di playare (importante!)
+                        video.muted = false;
+                        
+                        // Play con gestione della Promise
+                        let playPromise = video.play();
+                        
+                        if (playPromise !== undefined) {
+                            playPromise
+                                .then(() => {
+                                    console.log(`▶️  Video ${idx+1} - PLAYING`);
+                                    console.log(`🔊 Video ${idx+1} - AUDIO ON`);
+                                })
+                                .catch(error => {
+                                    console.error(`❌ Video ${idx+1} Play failed:`, error.name, error.message);
+                                });
+                        } else {
+                            // Fallback per browser vecchi
+                            console.log(`▶️  Video ${idx+1} - PLAYING (fallback)`);
+                        }
+                    } else {
+                        console.log(`ℹ️  Video ${idx+1} - Already playing`);
+                    }
+                } catch (err) {
+                    console.error(`❌ Video ${idx+1} - Error in mouseenter:`, err);
+                }
+            });
+            
+            // MOUSELEAVE - Video pausa + Audio OFF
+            box.addEventListener('mouseleave', function(e) {
+                console.log(`👆 Video ${idx+1} - MOUSE LEFT`);
+                
+                try {
+                    if (!video.paused) {
+                        video.pause();
+                        video.muted = true;
+                        video.currentTime = 0;
+                        console.log(`⏸️  Video ${idx+1} - PAUSED + MUTED + RESET`);
+                    }
+                } catch (err) {
+                    console.error(`❌ Video ${idx+1} - Error in mouseleave:`, err);
+                }
+            });
+        });
+        
+        console.log('✅ Video hover system initialized - Ready to play on hover!');
+    </script>
+    </script>
+    </script>
+</body>
+</html>
